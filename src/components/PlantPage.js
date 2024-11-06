@@ -48,7 +48,25 @@ function PlantPage() {
 
   const filteredPlants = plants
     .filter(plant => plant.name.toLowerCase().includes(search.toLowerCase()));
-  console.log(search)
+
+
+  function handleDeleteItem(deletedItem) {
+    const updatedItems = plants.filter((plant) => plant.id !== deletedItem.id);
+    setPlants(updatedItems);
+  }
+
+
+  function updatePrice(updatedPlantPrice) {
+    const updatedPlantPrices = plants.map((plant) => {
+      if (plant.id === updatedPlantPrice.id) {
+        return updatedPlantPrice
+      } else {
+        return plant
+      }
+    })
+    setPlants(updatedPlantPrices)
+  }
+
 
   return (
     <main>
@@ -63,8 +81,8 @@ function PlantPage() {
         plants={filteredPlants}
         onInStock={handleInStock}
         onOutOfStock={handleOutOfStock}
-
-      />
+        onDeleteItem={handleDeleteItem}
+        updatePrice={updatePrice} />
     </main>
   );
 }

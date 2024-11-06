@@ -4,7 +4,7 @@ function NewPlantForm({ onAddPlant }) {
 
   //set key value states as empty
   const [name, setName] = useState("");
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
 
   //submit click event handler
@@ -48,8 +48,8 @@ function NewPlantForm({ onAddPlant }) {
           placeholder="Image URL" />
         <input type="number"
           name="price"
-          onChange={(e) => setPrice(e.target.value)}
-          value={price} step="0.01"
+          onChange={(e) => setPrice(parseInt(e.target.value))}
+          value={price}
           placeholder="Price" />
         <button type="submit" >Add Plant</button>
       </form>
